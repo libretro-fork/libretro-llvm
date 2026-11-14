@@ -204,10 +204,23 @@ def main():
             groups[key] = "LLVM_F%d" % (len(groups) + 1)
         return groups[key]
 
+    # Library files to leave out of the lists (unlinked.txt beside this
+    # file, when there is one): a core lists there what none of its links
+    # takes anything from. This repository has no such file and builds all.
+    unlinked = set()
+    listed = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unlinked.txt")
+    if os.path.exists(listed):
+        for line in open(listed):
+            line = line.strip()
+            if line and not line.startswith("#"):
+                unlinked.add("$(LLVM_SRC)/" + line)
+
     def emit_objs(name, objs, tree):
         entries = []
         for obj in objs:
             src, incs, defs, is_c = compiles[obj]
+            if tree == "$(LLVM_OBJ)" and rw.path(src) in unlinked:
+                continue
             entries.append((rw.path(src), group_of(incs, defs), is_c))
         w("%s_SRCS := \\" % name)
         for s, g, c in entries:

@@ -131,10 +131,12 @@ $(filter-out $(LLVM_MIN_OBJS),$(LLVM_TBLGEN_OBJS)): | $(LLVM_TBLGEN_TOOL)
 all: $(LLVM_ARCHIVE) $(LLVM_TBLGEN_OUT)
 
 # Its objects through a list, too many for a command line on Windows
-$(LLVM_ARCHIVE): $(LLVM_OBJS)
+# Made again when the lists change too: a file taken out of them is taken
+# out of the archive
+$(LLVM_ARCHIVE): $(LLVM_OBJS) make/llvm.mk
 	$(SAY) AR $@
 	$(Q)rm -f $@
-	$(file >$@.list,$^)
+	$(file >$@.list,$(filter %.o,$^))
 	$(Q)$(AR) rcs $@ @$@.list
 	$(Q)rm -f $@.list
 
