@@ -1,4 +1,60 @@
-# Files of LLVM's libraries that gen.py leaves out of llvm.mk: nothing in
-# this LLVM refers to them any more (README, Changes to LLVM).
+# Files of LLVM's libraries that gen.py leaves out of llvm.mk. They have a
+# lock in them, or were only there for one that has (README, Changes to
+# LLVM): nothing this library builds has a lock.
+lib/DebugInfo/DWARF/DWARFAbbreviationDeclaration.cpp
+lib/DebugInfo/DWARF/DWARFAcceleratorTable.cpp
+lib/DebugInfo/DWARF/DWARFAddressRange.cpp
+lib/DebugInfo/DWARF/DWARFCFIPrinter.cpp
+lib/DebugInfo/DWARF/DWARFCompileUnit.cpp
+lib/DebugInfo/DWARF/DWARFContext.cpp
+lib/DebugInfo/DWARF/DWARFDebugAbbrev.cpp
+lib/DebugInfo/DWARF/DWARFDebugAddr.cpp
+lib/DebugInfo/DWARF/DWARFDebugArangeSet.cpp
+lib/DebugInfo/DWARF/DWARFDebugAranges.cpp
+lib/DebugInfo/DWARF/DWARFDebugFrame.cpp
+lib/DebugInfo/DWARF/DWARFDebugInfoEntry.cpp
+lib/DebugInfo/DWARF/DWARFDebugLine.cpp
+lib/DebugInfo/DWARF/DWARFDebugLoc.cpp
+lib/DebugInfo/DWARF/DWARFDebugMacro.cpp
+lib/DebugInfo/DWARF/DWARFDebugPubTable.cpp
+lib/DebugInfo/DWARF/DWARFDebugRangeList.cpp
+lib/DebugInfo/DWARF/DWARFDebugRnglists.cpp
+lib/DebugInfo/DWARF/DWARFDie.cpp
+lib/DebugInfo/DWARF/DWARFExpressionPrinter.cpp
+lib/DebugInfo/DWARF/DWARFFormValue.cpp
+lib/DebugInfo/DWARF/DWARFGdbIndex.cpp
+lib/DebugInfo/DWARF/DWARFListTable.cpp
+lib/DebugInfo/DWARF/DWARFTypeUnit.cpp
+lib/DebugInfo/DWARF/DWARFUnit.cpp
+lib/DebugInfo/DWARF/DWARFUnitIndex.cpp
+lib/DebugInfo/DWARF/DWARFUnwindTablePrinter.cpp
+lib/DebugInfo/DWARF/DWARFVerifier.cpp
+lib/DebugInfo/DWARF/LowLevel/DWARFUnwindTable.cpp
+lib/DebugInfo/GSYM/DwarfTransformer.cpp
+lib/DebugInfo/GSYM/GsymCreator.cpp
 lib/ExecutionEngine/GDBRegistrationListener.cpp
+lib/ExecutionEngine/Orc/Shared/SimpleRemoteEPCUtils.cpp
+lib/ExecutionEngine/Orc/TargetProcess/ExecutorSharedMemoryMapperService.cpp
 lib/ExecutionEngine/Orc/TargetProcess/JITLoaderGDB.cpp
+lib/ExecutionEngine/Orc/TargetProcess/JITLoaderPerf.cpp
+lib/ExecutionEngine/Orc/TargetProcess/LibraryResolver.cpp
+lib/ExecutionEngine/Orc/TargetProcess/LibraryScanner.cpp
+lib/ExecutionEngine/Orc/TargetProcess/SimpleExecutorDylibManager.cpp
+lib/ExecutionEngine/Orc/TargetProcess/SimpleExecutorMemoryManager.cpp
+lib/ExecutionEngine/Orc/TargetProcess/SimpleRemoteEPCServer.cpp
+lib/ExecutionEngine/Orc/TargetProcess/UnwindInfoManager.cpp
+lib/ExecutionEngine/PerfJITEvents/PerfJITEventListener.cpp
+lib/Object/RelocationResolver.cpp
+lib/ProfileData/DataAccessProf.cpp
+lib/ProfileData/IndexedMemProfData.cpp
+lib/ProfileData/InstrProfCorrelator.cpp
+lib/ProfileData/InstrProfReader.cpp
+lib/ProfileData/MemProf.cpp
+lib/ProfileData/MemProfSummary.cpp
+lib/Support/BalancedPartitioning.cpp
+lib/Support/CrashRecoveryContext.cpp
+lib/Support/FileCollector.cpp
+lib/Support/Parallel.cpp
+lib/Support/PluginLoader.cpp
+lib/Support/RWMutex.cpp
+lib/Support/ThreadPool.cpp

@@ -57,6 +57,16 @@ LLVM's: Apache License 2.0 with LLVM exceptions, in `LICENSE.TXT`.
 LLVM here is no longer the release as it came. What was changed, newest
 first:
 
+- No lock left in anything that is built. Signal handling is inert (no
+  handlers installed, no files removed on a signal, no stack traces); the
+  run-time linker takes the resolver's answer directly, not through a
+  promise and a future; the once-flags left are `llvm::once_flag`; the
+  locks around timers, statistics, the time trace and the verifier's
+  reports are gone (those reports are one thread's). `Process::Exit` asks
+  for no crash recovery context and `InstrProf.cpp` no longer reads
+  profiles from files. Library files that still have a lock in them - the
+  ORC JIT, the DWARF reader's context and verifier, the thread pool and
+  what needs them - are not built (`make/unlinked.txt`).
 - No locks in the JIT engine, MCJIT and the run-time linker
   (`ExecutionEngine`, `MCJIT`, `RuntimeDyld`): an engine is one thread's at
   a time, and whoever hands one between threads sees to that. MCJIT does
