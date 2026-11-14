@@ -57,6 +57,12 @@ LLVM's: Apache License 2.0 with LLVM exceptions, in `LICENSE.TXT`.
 LLVM here is no longer the release as it came. What was changed, newest
 first:
 
+- No locks in the JIT engine, MCJIT and the run-time linker
+  (`ExecutionEngine`, `MCJIT`, `RuntimeDyld`): an engine is one thread's at
+  a time, and whoever hands one between threads sees to that. MCJIT does
+  not put itself on the debugger's list (the GDB JIT interface), and the
+  two files behind that list are not built. `ExecutionEngine.h` defines
+  `LLVM_LIBRETRO`, which tells this LLVM from one as released.
 - No locks in what compiling threads share: the pass registry, the statics
   made on first use (`ManagedStatic`), `llvm::call_once`, the symbols and
   libraries of `DynamicLibrary`, and the fatal-error handlers are lock-free

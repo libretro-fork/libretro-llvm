@@ -1,0 +1,4 @@
+# Files of LLVM's libraries that gen.py leaves out of llvm.mk: nothing in
+# this LLVM refers to them any more (README, Changes to LLVM).
+lib/ExecutionEngine/GDBRegistrationListener.cpp
+lib/ExecutionEngine/Orc/TargetProcess/JITLoaderGDB.cpp

@@ -205,8 +205,8 @@ def main():
         return groups[key]
 
     # Library files to leave out of the lists (unlinked.txt beside this
-    # file, when there is one): a core lists there what none of its links
-    # takes anything from. This repository has no such file and builds all.
+    # file): here the files nothing in this LLVM refers to any more; a core
+    # adds what none of its links takes anything from.
     unlinked = set()
     listed = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unlinked.txt")
     if os.path.exists(listed):
