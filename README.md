@@ -12,6 +12,10 @@ what a JIT for x86-64 and ARM64 needs:
   targets, the perf JIT listener, TableGen, the public headers and the
   TableGen inputs. No tests, tools, documentation, CMake or other targets.
 - `third-party/siphash` - the one header LLVM takes from outside `llvm/`.
+- `libretro-common/include` - the four headers of libretro-common's
+  `retro_atomic` that LLVM's files call where they had locks. A program
+  that uses the library needs them on its include path too: LLVM's public
+  headers include `retro_atomic.h`.
 - `make/llvm.mk` - the sources of each library, what each is compiled with,
   and every TableGen run.
 - `make/include/` - the headers LLVM's configuration would write: `config.h`
@@ -47,3 +51,14 @@ copies - and what is not reached by a core is removed.
 ## Licence
 
 LLVM's: Apache License 2.0 with LLVM exceptions, in `LICENSE.TXT`.
+
+## Changes to LLVM
+
+LLVM here is no longer the release as it came. What was changed, newest
+first:
+
+- No locks in what compiling threads share: the pass registry, the statics
+  made on first use (`ManagedStatic`), `llvm::call_once`, the symbols and
+  libraries of `DynamicLibrary`, and the fatal-error handlers are lock-free
+  on `retro_atomic`. A thread that finds a static or a once-flag being made
+  by another yields until it is made; nothing else waits.
